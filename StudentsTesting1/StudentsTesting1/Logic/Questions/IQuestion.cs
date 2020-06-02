@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentsTesting1.Logic.Questions
 {
-    interface IQuestion
+    public interface IQuestion
     {
     }
 }

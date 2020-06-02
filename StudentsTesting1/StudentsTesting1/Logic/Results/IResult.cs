@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentsTesting1.Logic.Results
 {
-    interface IResult
+    public interface IResult
     {
     }
 }

@@ -6,8 +6,8 @@ using StudentsTesting1.Logic.Questions;
 
 namespace StudentsTesting1.Logic.Exams
 {
-    interface IExam
+    public interface IExam
     {
-        public void SetQuestions(List<IQuestion> Questions);
+        public void AddQuestion(IQuestion question);
     }
 }

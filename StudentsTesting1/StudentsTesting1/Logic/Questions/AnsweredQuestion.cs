@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentsTesting1.Logic.Questions
 {
-    class AnsweredQuestion : Question, IQuestion
+    public class AnsweredQuestion : Question, IQuestion
     {
         public string actualAnswer { get; private set; }
 

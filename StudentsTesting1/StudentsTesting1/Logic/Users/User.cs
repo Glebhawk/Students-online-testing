@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StudentsTesting1.Logic.Users
 {
-    abstract class User
+    public abstract class User
     {
         public string firstName { get; protected set; }
         public string lastName { get; protected set; }

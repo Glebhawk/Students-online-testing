@@ -8,7 +8,7 @@ using StudentsTesting1.Logic.Questions;
 
 namespace StudentsTesting1.Logic.Results
 {
-    class Result : IResult
+    public class Result : IResult
     {
         public IExam exam { get; protected set; }
         public Student student { get; protected set; }
@@ -28,6 +28,13 @@ namespace StudentsTesting1.Logic.Results
                     score++;
                 }
             }
+        }
+
+        public Result(Student Student, int Score, List<AnsweredQuestion> AnsweredQuestions)
+        {
+            student = Student;
+            score = Score;
+            answeredQuestions = AnsweredQuestions;
         }
     }
 }

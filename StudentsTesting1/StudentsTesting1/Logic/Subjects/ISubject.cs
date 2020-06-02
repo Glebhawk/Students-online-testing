@@ -7,9 +7,9 @@ using StudentsTesting1.Logic.Exams;
 
 namespace StudentsTesting1.Logic.Subjects
 {
-    interface ISubject
+    public interface ISubject
     {
-        public void AddGroup(Group group);
-        public void AddExam(Exam exam);
+        public void AddGroup(IGroup group);
+        public void AddExam(IExam exam);
     }
 }

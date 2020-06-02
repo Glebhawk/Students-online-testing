@@ -7,23 +7,29 @@ using StudentsTesting1.Logic.Groups;
 
 namespace StudentsTesting1.Logic.Subjects
 {
-    class Subject : ISubject
+    public class Subject : ISubject
     {
+        public int id { get; private set; }
         public string subjectTitle { get; private set; }
-        public List<Exam> exams { get; private set; } = new List<Exam>();
-        public List<Group> groups { get; private set; } = new List<Group>();
+        public List<IExam> exams { get; private set; } = new List<IExam>();
+        public List<IGroup> groups { get; private set; } = new List<IGroup>();
 
         public Subject(string SubjectTitle)
         {
             subjectTitle = SubjectTitle;
         }
+        public Subject(int ID, string SubjectTitle)
+        {
+            id = ID;
+            subjectTitle = SubjectTitle;
+        }
 
-        public void AddGroup(Group group)
+        public void AddGroup(IGroup group)
         {
             groups.Add(group);
         }
 
-        public void AddExam(Exam exam)
+        public void AddExam(IExam exam)
         {
             exams.Add(exam);
         }
