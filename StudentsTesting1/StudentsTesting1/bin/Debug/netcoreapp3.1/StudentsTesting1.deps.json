@@ -26,7 +26,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
-          "System.Data.SQLite.Core": "1.0.112.2",
+          "StudentsTestingLogic": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -1051,11 +1051,11 @@
           "System.Text.Encoding": "4.3.0"
         }
       },
-      "System.Data.SQLite.Core/1.0.112.2": {
+      "System.Data.SQLite.Core/1.0.113.1": {
         "runtime": {
           "lib/netstandard2.1/System.Data.SQLite.dll": {
-            "assemblyVersion": "1.0.112.1",
-            "fileVersion": "1.0.112.1"
+            "assemblyVersion": "1.0.113.0",
+            "fileVersion": "1.0.113.0"
           }
         },
         "runtimeTargets": {
@@ -1082,22 +1082,22 @@
           "runtimes/win-x64/native/netstandard2.0/SQLite.Interop.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.0.112.1"
+            "fileVersion": "1.0.113.0"
           },
           "runtimes/win-x64/native/netstandard2.1/SQLite.Interop.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.0.112.1"
+            "fileVersion": "1.0.113.0"
           },
           "runtimes/win-x86/native/netstandard2.0/SQLite.Interop.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.0.112.1"
+            "fileVersion": "1.0.113.0"
           },
           "runtimes/win-x86/native/netstandard2.1/SQLite.Interop.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.0.112.1"
+            "fileVersion": "1.0.113.0"
           }
         },
         "compile": {
@@ -1634,6 +1634,17 @@
           "System.Text.Encoding": "4.3.0",
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
+        }
+      },
+      "StudentsTestingLogic/1.0.0": {
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.1"
+        },
+        "runtime": {
+          "StudentsTestingLogic.dll": {}
+        },
+        "compile": {
+          "StudentsTestingLogic.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -3675,12 +3686,12 @@
       "path": "system.console/4.3.0",
       "hashPath": "system.console.4.3.0.nupkg.sha512"
     },
-    "System.Data.SQLite.Core/1.0.112.2": {
+    "System.Data.SQLite.Core/1.0.113.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iYj32NThg9oSr/0IvG0HEIVi5/x5qqdqAU4wu8sSYe94e8F+QbrXmsrP/tvWTre4ugkgTgdmPsJdtxDP4TIsEg==",
-      "path": "system.data.sqlite.core/1.0.112.2",
-      "hashPath": "system.data.sqlite.core.1.0.112.2.nupkg.sha512"
+      "sha512": "sha512-ymvB558/Tgdxj2MzJjhDvPLJ/S2WgG1KzQ1cmqzsW3+YQ5DO+eAU04OpY5deK6fndM+DEU8+lwmmYHxxUS2Qvw==",
+      "path": "system.data.sqlite.core/1.0.113.1",
+      "hashPath": "system.data.sqlite.core.1.0.113.1.nupkg.sha512"
     },
     "System.Diagnostics.Debug/4.3.0": {
       "type": "package",
@@ -4059,6 +4070,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "StudentsTestingLogic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

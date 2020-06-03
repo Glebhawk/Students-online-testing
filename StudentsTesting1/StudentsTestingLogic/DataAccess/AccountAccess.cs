@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentsTesting1.Logic.Users;
-using StudentsTesting1.Views;
+using StudentsTesting1.Logic.Accounts;
 using System.Data;
 
 namespace StudentsTesting1.DataAccess
@@ -35,7 +35,7 @@ namespace StudentsTesting1.DataAccess
                 "(\"" + login + "\", " + password + ", \"" + role + "\", (SELECT MAX(ID) FROM TEACHERS));";
             dbaccess.SQLExecute(command);
         }
-        public AccountView TryToLogin(string login, string passwordHash)
+        public Account TryToLogin(string login, string passwordHash)
         {
             DataTable dataTable = dbaccess.SQLGetTableData
                 ("SELECT * FROM ACCOUNTS WHERE LOGIN = \"" + login + "\" AND PASSWORD_HASH = \"" + passwordHash + "\";");
@@ -46,15 +46,15 @@ namespace StudentsTesting1.DataAccess
                 {
                     case ("admin"):
                         {
-                            return new AccountView(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), login, role);
+                            return new Account(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), login, role);
                         }
                     case ("teacher"):
                         {
-                            return new AccountView(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), login, role);
+                            return new Account(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), login, role);
                         }
                     case ("student"):
                         {
-                            return new AccountView(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), login, role);
+                            return new Account(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), login, role);
                         }
                     default: return null;
                 }

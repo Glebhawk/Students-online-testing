@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lfdSRIwpbQtwuAfhIVY+1EC1ehDH6PRG7ZjyN70DBpBsAwSLwHQJo1BI/lctpXLlP0Ju3vykgJw9p9oYL7uLoA==",
+  "dgSpecHash": "J+qs62yl5tzIefCbneEdsGmngpxkNcOZB7/nOU7P2dsJRQtm0HxP+S5BHd085P79StAzj/vjHaIA+61cngY6/w==",
   "success": true,
   "projectFilePath": "D:\\Projects\\C#\\StudentsTesting1\\StudentsNUnitTestProject\\StudentsNUnitTestProject.csproj",
   "expectedPackageFiles": [
@@ -59,7 +59,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.composition.hosting\\1.0.31\\system.composition.hosting.1.0.31.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.composition.runtime\\1.0.31\\system.composition.runtime.1.0.31.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.composition.typedparts\\1.0.31\\system.composition.typedparts.1.0.31.nupkg.sha512",
-    "C:\\Users\\8460\\.nuget\\packages\\system.data.sqlite.core\\1.0.112.2\\system.data.sqlite.core.1.0.112.2.nupkg.sha512",
+    "C:\\Users\\8460\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.1\\system.data.sqlite.core.1.0.113.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.diagnostics.process\\4.3.0\\system.diagnostics.process.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",

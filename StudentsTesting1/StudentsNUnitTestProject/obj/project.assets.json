@@ -1161,7 +1161,7 @@
           "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
         }
       },
-      "System.Data.SQLite.Core/1.0.112.2": {
+      "System.Data.SQLite.Core/1.0.113.1": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/System.Data.SQLite.dll": {}
@@ -1889,7 +1889,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.4",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.3",
-          "System.Data.SQLite.Core": "1.0.112.2"
+          "StudentsTestingLogic": "1.0.0"
         },
         "compile": {
           "bin/placeholder/StudentsTesting1.dll": {}
@@ -1900,6 +1900,19 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "StudentsTestingLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.1"
+        },
+        "compile": {
+          "bin/placeholder/StudentsTestingLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StudentsTestingLogic.dll": {}
+        }
       }
     }
   },
@@ -3846,10 +3859,10 @@
         "system.composition.typedparts.nuspec"
       ]
     },
-    "System.Data.SQLite.Core/1.0.112.2": {
-      "sha512": "iYj32NThg9oSr/0IvG0HEIVi5/x5qqdqAU4wu8sSYe94e8F+QbrXmsrP/tvWTre4ugkgTgdmPsJdtxDP4TIsEg==",
+    "System.Data.SQLite.Core/1.0.113.1": {
+      "sha512": "ymvB558/Tgdxj2MzJjhDvPLJ/S2WgG1KzQ1cmqzsW3+YQ5DO+eAU04OpY5deK6fndM+DEU8+lwmmYHxxUS2Qvw==",
       "type": "package",
-      "path": "system.data.sqlite.core/1.0.112.2",
+      "path": "system.data.sqlite.core/1.0.113.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3859,12 +3872,30 @@
         "build/net40/System.Data.SQLite.Core.targets",
         "build/net40/x64/SQLite.Interop.dll",
         "build/net40/x86/SQLite.Interop.dll",
+        "build/net45/System.Data.SQLite.Core.targets",
+        "build/net45/x64/SQLite.Interop.dll",
+        "build/net45/x86/SQLite.Interop.dll",
+        "build/net451/System.Data.SQLite.Core.targets",
+        "build/net451/x64/SQLite.Interop.dll",
+        "build/net451/x86/SQLite.Interop.dll",
+        "build/net46/System.Data.SQLite.Core.targets",
+        "build/net46/x64/SQLite.Interop.dll",
+        "build/net46/x86/SQLite.Interop.dll",
         "lib/net20/System.Data.SQLite.dll",
         "lib/net20/System.Data.SQLite.dll.config",
         "lib/net20/System.Data.SQLite.xml",
         "lib/net40/System.Data.SQLite.dll",
         "lib/net40/System.Data.SQLite.dll.config",
         "lib/net40/System.Data.SQLite.xml",
+        "lib/net45/System.Data.SQLite.dll",
+        "lib/net45/System.Data.SQLite.dll.config",
+        "lib/net45/System.Data.SQLite.xml",
+        "lib/net451/System.Data.SQLite.dll",
+        "lib/net451/System.Data.SQLite.dll.config",
+        "lib/net451/System.Data.SQLite.xml",
+        "lib/net46/System.Data.SQLite.dll",
+        "lib/net46/System.Data.SQLite.dll.config",
+        "lib/net46/System.Data.SQLite.xml",
         "lib/netstandard2.0/System.Data.SQLite.dll",
         "lib/netstandard2.0/System.Data.SQLite.dll.config",
         "lib/netstandard2.0/System.Data.SQLite.xml",
@@ -3879,7 +3910,7 @@
         "runtimes/win-x64/native/netstandard2.1/SQLite.Interop.dll",
         "runtimes/win-x86/native/netstandard2.0/SQLite.Interop.dll",
         "runtimes/win-x86/native/netstandard2.1/SQLite.Interop.dll",
-        "system.data.sqlite.core.1.0.112.2.nupkg.sha512",
+        "system.data.sqlite.core.1.0.113.1.nupkg.sha512",
         "system.data.sqlite.core.nuspec"
       ]
     },
@@ -6215,6 +6246,11 @@
       "type": "project",
       "path": "../StudentsTesting1/StudentsTesting1.csproj",
       "msbuildProject": "../StudentsTesting1/StudentsTesting1.csproj"
+    },
+    "StudentsTestingLogic/1.0.0": {
+      "type": "project",
+      "path": "../StudentsTestingLogic/StudentsTestingLogic.csproj",
+      "msbuildProject": "../StudentsTestingLogic/StudentsTestingLogic.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6223,6 +6259,7 @@
       "Moq >= 4.14.1",
       "NUnit3TestAdapter >= 3.15.1",
       "StudentsTesting1 >= 1.0.0",
+      "StudentsTestingLogic >= 1.0.0",
       "nunit >= 3.12.0"
     ]
   },
@@ -6258,6 +6295,9 @@
           "projectReferences": {
             "D:\\Projects\\C#\\StudentsTesting1\\StudentsTesting1\\StudentsTesting1.csproj": {
               "projectPath": "D:\\Projects\\C#\\StudentsTesting1\\StudentsTesting1\\StudentsTesting1.csproj"
+            },
+            "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj": {
+              "projectPath": "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj"
             }
           }
         }

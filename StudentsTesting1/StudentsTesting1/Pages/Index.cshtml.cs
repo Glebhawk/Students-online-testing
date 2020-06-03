@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using StudentsTesting1.DataAccess;
-using StudentsTesting1.Views;
+using StudentsTesting1.Logic.Accounts;
 using System.ComponentModel.DataAnnotations;
 
 namespace StudentsTesting1.Pages

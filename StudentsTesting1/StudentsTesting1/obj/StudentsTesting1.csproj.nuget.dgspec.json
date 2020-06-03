@@ -29,7 +29,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj": {
+                "projectPath": "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -48,10 +52,6 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.3, )"
-            },
-            "System.Data.SQLite.Core": {
-              "target": "Package",
-              "version": "[1.0.112.2, )"
             }
           },
           "imports": [
@@ -74,6 +74,73 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj",
+        "projectName": "StudentsTestingLogic",
+        "projectPath": "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\StudentsTestingLogic.csproj",
+        "packagesPath": "C:\\Users\\8460\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\C#\\StudentsTesting1\\StudentsTestingLogic\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\8460\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.113.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

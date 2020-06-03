@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StudentsTesting1\StudentsTesting1.csproj" />
+    <ProjectReference Include="..\StudentsTestingLogic\StudentsTestingLogic.csproj" />
   </ItemGroup>
 
 </Project>

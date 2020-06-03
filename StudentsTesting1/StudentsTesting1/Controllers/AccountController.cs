@@ -4,15 +4,15 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using StudentsTesting1.DataAccess;
 using StudentsTesting1.Pages;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using StudentsTesting1.Views;
+using StudentsTesting1.Logic.Accounts;
 using System.Text;
 using System.Security.Cryptography;
 using StudentsTesting1.IoC;
+using StudentsTesting1.DataAccess;
 
 namespace StudentsTesting1.Controllers
 {
@@ -74,7 +74,7 @@ namespace StudentsTesting1.Controllers
             {
                 var sha1 = new SHA1CryptoServiceProvider();
                 var data = Encoding.UTF8.GetBytes(model.password);
-                AccountView account = accountAccess.TryToLogin(model.login, Encoding.UTF8.GetString(sha1.ComputeHash(data)));
+                Account account = accountAccess.TryToLogin(model.login, Encoding.UTF8.GetString(sha1.ComputeHash(data)));
                 if (account != null)
                 {
                     await Authenticate(account);
@@ -86,7 +86,7 @@ namespace StudentsTesting1.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(AccountView account)
+        private async Task Authenticate(Account account)
         {
             // создаем один claim
             var claims = new List<Claim>

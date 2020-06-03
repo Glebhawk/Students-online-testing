@@ -394,3 +394,5 @@ D:\Projects\C#\StudentsTesting1\StudentsTesting1\obj\Debug\netcoreapp3.1\Student
 D:\Projects\C#\StudentsTesting1\StudentsTesting1\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
 D:\Projects\C#\StudentsTesting1\StudentsTesting1\obj\Debug\netcoreapp3.1\Razor\Pages\Account\login.cshtml.g.cs
 D:\Projects\C#\StudentsTesting1\StudentsTesting1\obj\Debug\netcoreapp3.1\StudentsTesting1.csprojAssemblyReference.cache
+D:\Projects\C#\StudentsTesting1\StudentsTesting1\bin\Debug\netcoreapp3.1\StudentsTestingLogic.dll
+D:\Projects\C#\StudentsTesting1\StudentsTesting1\bin\Debug\netcoreapp3.1\StudentsTestingLogic.pdb
