@@ -38,16 +38,17 @@ namespace StudentsTesting1.DataAccess
             dbaccess.SQLExecute(command);
         }
 
-        public List<Exam> GetExamsOfSubject(string subjectTitle)
+        public List<Exam> GetExamsOfSubject(int subjectID)
         {
-            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM EXAMS JOIN SUBJECTS ON EXAMS.SUBJECT_ID = SUBJECTS.ID WHERE SUBJECTS.TITLE = \"" + subjectTitle + "\";");
+            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM EXAMS JOIN SUBJECTS ON EXAMS.SUBJECT_ID = SUBJECTS.ID WHERE SUBJECTS.ID = " + subjectID + ";");
             List<Exam> exams = new List<Exam>();
             if (dataTable.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     exams.Add(new Exam(Convert.ToInt32(dataTable.Rows[i].ItemArray[0]) ,Convert.ToString(dataTable.Rows[i].ItemArray[1]), 
-                        Convert.ToInt32(dataTable.Rows[i].ItemArray[2]), Convert.ToInt32(dataTable.Rows[i].ItemArray[3])));
+                        Convert.ToInt32(dataTable.Rows[i].ItemArray[2]), Convert.ToInt32(dataTable.Rows[i].ItemArray[3]), 
+                        Convert.ToInt32(dataTable.Rows[i].ItemArray[4])));
                     List<Question> questions = questionAccess.GetQuestionsOfExam(exams[i].id);
                     for (int j = 0; j < questions.Count; j++)
                     {
@@ -58,17 +59,18 @@ namespace StudentsTesting1.DataAccess
             return exams;
         }
 
-        public List<Exam> GetExamsOfStudent(int studentID)
+        public List<Exam> GetExamsOfStudent(string studentID)
         {
             DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM EXAMS JOIN EXAMSTOSTUDENTS ON EXAMSTOSTUDENTS.EXAM_ID" +
-                " = EXAMS.ID JOIN STUDENTS ON STUDENTS.ID = EXAMSTOSTUDENTS.STUDENT_ID WHERE STUDENTS.ID = " + studentID + ";"); 
+                " = EXAMS.ID JOIN STUDENTS ON STUDENTS.ID = EXAMSTOSTUDENTS.STUDENT_ID WHERE STUDENTS.STUDENTID = \"" + studentID + "\";"); 
             List<Exam> exams = new List<Exam>();
             if (dataTable.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     exams.Add(new Exam(Convert.ToInt32(dataTable.Rows[i].ItemArray[0]) ,Convert.ToString(dataTable.Rows[i].ItemArray[1]),
-                        Convert.ToInt32(dataTable.Rows[i].ItemArray[2]), Convert.ToInt32(dataTable.Rows[i].ItemArray[3])));
+                        Convert.ToInt32(dataTable.Rows[i].ItemArray[2]), Convert.ToInt32(dataTable.Rows[i].ItemArray[3]), 
+                        Convert.ToInt32(dataTable.Rows[i].ItemArray[4])));
                     List<Question> questions = questionAccess.GetQuestionsOfExam(exams[i].id);
                     for (int j = 0; j < questions.Count; j++)
                     {
@@ -85,7 +87,8 @@ namespace StudentsTesting1.DataAccess
             if (dataTable.Rows.Count > 0)
             {
                 Exam exam = new Exam(Convert.ToInt32(dataTable.Rows[0].ItemArray[0]), Convert.ToString(dataTable.Rows[0].ItemArray[1]),
-                Convert.ToInt32(dataTable.Rows[0].ItemArray[2]), Convert.ToInt32(dataTable.Rows[0].ItemArray[3]));
+                Convert.ToInt32(dataTable.Rows[0].ItemArray[2]), Convert.ToInt32(dataTable.Rows[0].ItemArray[3]),
+                Convert.ToInt32(dataTable.Rows[0].ItemArray[4]));
                 List<Question> questions = questionAccess.GetQuestionsOfExam(exam.id);
                 for (int j = 0; j < questions.Count; j++)
                 {
@@ -93,8 +96,7 @@ namespace StudentsTesting1.DataAccess
                 }
                 return exam;
             }
-            Exam emptyExam = new Exam("Exam not found", 0, 0);
-            return emptyExam;
+            return null;
         }
     }
 }

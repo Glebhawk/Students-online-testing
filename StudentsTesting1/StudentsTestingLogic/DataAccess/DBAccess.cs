@@ -18,7 +18,7 @@ namespace StudentsTesting1.DataAccess
         public void SQLExecute(string query)
         {
             connection.Open();
-            SQLiteCommand command = new SQLiteCommand(query);
+            SQLiteCommand command = new SQLiteCommand(query, connection);
             command.ExecuteNonQuery();
             connection.Close();
         }

@@ -11,15 +11,17 @@ namespace StudentsTesting1.Logic.Subjects
     {
         public int id { get; private set; }
         public string subjectTitle { get; private set; }
+        public string teacherName { get; private set; }
 
         public Subject(string SubjectTitle)
         {
             subjectTitle = SubjectTitle;
         }
-        public Subject(int ID, string SubjectTitle)
+        public Subject(int ID, string SubjectTitle, string TeacherName)
         {
             id = ID;
             subjectTitle = SubjectTitle;
+            teacherName = TeacherName;
         }
     }
 }

@@ -18,6 +18,8 @@ namespace StudentsTesting1.Controllers
         private Teacher teacher { get; set; }
         private IoCContainer IoC { get; set; } = new IoCContainer();
         private IDBAccess dbAccess { get; set; }
+        private GroupAccess groupAccess { get; set; }
+        private SubjectAccess subjectAccess { get; set; }
         private ResultAccess resultAccess { get; set; }
         private StudentAccess studentAccess { get; set; }
         private ExamAccess examAccess { get; set; }
@@ -28,9 +30,12 @@ namespace StudentsTesting1.Controllers
             IoC.RegisterObject<IExam, Exam>();
             IoC.RegisterObject<IResult, Result>();
             IoC.RegisterObject<IDBAccess, DBAccess>();
+            dbAccess = new DBAccess();
             examAccess = new ExamAccess(dbAccess);
             resultAccess = new ResultAccess(dbAccess);
             studentAccess = new StudentAccess(dbAccess);
+            groupAccess = new GroupAccess(dbAccess);
+            subjectAccess = new SubjectAccess(dbAccess);
             teacher = Teacher;
         }
 
@@ -45,6 +50,19 @@ namespace StudentsTesting1.Controllers
             resultAccess = ResultAccess;
             studentAccess = StudentAccess;
             teacher = Teacher;
+        }
+        public List<Exam> GetExams(int subjectID)
+        {
+            return examAccess.GetExamsOfSubject(subjectID);
+        }
+        public List<Group> GetGroups(int subjectID)
+        {
+            return groupAccess.GetGroupsOfSubject(subjectID);
+        }
+
+        public List<Subject> GetSubjects()
+        {
+            return subjectAccess.GetSubjectsOfTeacher(teacher.teacherID);
         }
 
         public bool CreateExam(string Title, int NumberOfQuestions, int Attempts, List<Question> Questions, Subject subject)

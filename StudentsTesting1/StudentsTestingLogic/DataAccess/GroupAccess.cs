@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using StudentsTesting1.Logic.Groups;
 using System.Data;
 using StudentsTesting1.Logic.Subjects;
+using StudentsTesting1.Logic.Users;
 
 namespace StudentsTesting1.DataAccess
 {
@@ -18,7 +19,7 @@ namespace StudentsTesting1.DataAccess
         }
         public virtual void InsertGroupToDB(Group group)
         {
-            string command = "INSERT INTO GROUPS(\"TITLE\") VALUES (\"" + group.title + "\"));";
+            string command = "INSERT INTO GROUPS(\"TITLE\") VALUES (\"" + group.title + "\");";
             dbaccess.SQLExecute(command);
         }
 

@@ -12,7 +12,7 @@ namespace StudentsNUnitTestProject
         public void AddQuestionTest()
         {
             //Arrange
-            Exam exam = new Exam("Exam", 1, 3);
+            Exam exam = new Exam("Exam", 1, 3, 1);
 
             Question question = new Question("Question", "Correct answer", new List<String> { "Answer1", "Answer2" });
 

@@ -2,29 +2,33 @@
 
 @using StudentsTesting1.Pages;
 
-@model StudentsTesting1.Pages.loginModel
+@model StudentsTesting1.Pages.LoginModel
 @{
-    ViewData["Title"] = "login";
+    ViewData["Title"] = "Вхід в систему";
 }
-<h2>Вход на сайт</h2>
 
-<a asp-action="Register" asp-controller="Account">Регистрация</a>
+@section Navigation{ 
 
-<form asp-action="Login" asp-controller="Account" asp- asp-anti-forgery="true">
+}
+
+<h2>Вхід в систему</h2>
+
+<form method="post">
     <div class="validation" asp-validation-summary="ModelOnly" />
     <div>
         <div class="form-group">
-            <label asp-for="login">Введите Email</label>
-            <input type="text" asp-for="login" />
+            <label >Введіть логін</label><br />
+            <input type="text" name="login" id="login" required/>
             <span asp-validation-for="login" />
         </div>
         <div class="form-group">
-            <label asp-for="password">Введите пароль</label>
-            <input asp-for="password" />
-            <span asp-validation-for="password" />
+            <label >Введіть пароль</label><br />
+            <input type="password" name="Password" id="Password" required/>
+            <span asp-validation-for="Password" />
         </div>
         <div class="form-group">
-            <input type="submit" value="Увійти" class="btn btn-outline-dark" />
+            <input type="submit" asp-page-handler="Login" value="Увійти" class="btn btn-outline-dark" />
         </div>
     </div>
 </form>
+<b>@Model.error</b>

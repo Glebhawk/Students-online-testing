@@ -17,14 +17,16 @@ namespace StudentsNUnitTestProject
             string firstNameExpected = "Petro";
             string lastNameExpected = "Petrov";
             string teacherIdExpected = "ID";
+            string loginExpected = "petrov";
 
             //Act
-            Teacher teacher = new Teacher(firstNameExpected, lastNameExpected, teacherIdExpected);
+            Teacher teacher = new Teacher(firstNameExpected, lastNameExpected, teacherIdExpected, loginExpected);
 
             //Assert
             Assert.AreEqual(firstNameExpected, teacher.firstName);
             Assert.AreEqual(lastNameExpected, teacher.lastName);
             Assert.AreEqual(teacherIdExpected, teacher.teacherID);
+            Assert.AreEqual(loginExpected, teacher.login);
         }
     }
 }

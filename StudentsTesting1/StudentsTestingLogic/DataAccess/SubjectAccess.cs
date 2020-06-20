@@ -30,6 +30,33 @@ namespace StudentsTesting1.DataAccess
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
+                    subjects.Add(new Subject(Convert.ToInt32(dataTable.Rows[i].ItemArray[0]),Convert.ToString(dataTable.Rows[i].ItemArray[1]), ""));
+                }
+            }
+            return subjects;
+        }
+        public List<Subject> GetSubjectsOfGroup(string groupTitle)
+        {
+            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM SUBJECTS JOIN GROUPSTOSUBJECTS ON GROUPSTOSUBJECTS.SUBJECT_ID = SUBJECTS.ID JOIN GROUPS ON GROUPSTOSUBJECTS.GROUP_ID = GROUPS.ID WHERE GROUPS.TITLE = \"" + groupTitle + "\";");
+            List<Subject> subjects = new List<Subject>();
+            if (dataTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    subjects.Add(new Subject(Convert.ToString(dataTable.Rows[i].ItemArray[1])));
+                }
+            }
+            return subjects;
+        }
+
+        public List<Subject> GetSubjectsOfStudent(string studentID)
+        {
+            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM SUBJECTS JOIN GROUPSTOSUBJECTS ON GROUPSTOSUBJECTS.SUBJECT_ID = SUBJECTS.ID JOIN GROUPS ON GROUPSTOSUBJECTS.GROUP_ID = GROUPS.ID JOIN STUDENTS ON STUDENTS.GROUP_ID = GROUPS.ID WHERE STUDENTS.STUDENTID = \"" + studentID + "\";");
+            List<Subject> subjects = new List<Subject>();
+            if (dataTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
                     subjects.Add(new Subject(Convert.ToString(dataTable.Rows[i].ItemArray[1])));
                 }
             }
@@ -46,6 +73,21 @@ namespace StudentsTesting1.DataAccess
             }
             Subject emptySubject = new Subject("Subject not found");
             return emptySubject;
+        }
+
+        public List<Subject> GetAllSubjects()
+        {
+            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM SUBJECTS JOIN TEACHERS ON SUBJECTS.TEACHER_ID = TEACHERS.ID");
+            List<Subject> subjects = new List<Subject>();
+            if (dataTable.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    subjects.Add(new Subject(Convert.ToInt32(dataTable.Rows[i].ItemArray[0]),Convert.ToString(dataTable.Rows[i].ItemArray[1]),
+                        Convert.ToString(dataTable.Rows[i].ItemArray[4]) + " " + Convert.ToString(Convert.ToString(dataTable.Rows[i].ItemArray[5]))));
+                }
+            }
+            return subjects;
         }
     }
 }

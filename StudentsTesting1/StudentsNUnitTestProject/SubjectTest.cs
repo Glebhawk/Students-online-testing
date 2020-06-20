@@ -31,14 +31,12 @@ namespace StudentsNUnitTestProject
         {
             //Arrange
             string subjectTitleExpected = "Subject";
-            int subjectIdExpected = 1;
 
             //Act
-            Subject subject = new Subject(subjectIdExpected ,subjectTitleExpected);
+            Subject subject = new Subject(subjectTitleExpected);
 
             //Assert
             Assert.AreEqual(subjectTitleExpected, subject.subjectTitle);
-            Assert.AreEqual(subjectIdExpected, subject.id);
         }
     }
 }

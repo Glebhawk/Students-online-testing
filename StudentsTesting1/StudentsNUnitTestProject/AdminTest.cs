@@ -29,7 +29,7 @@ namespace StudentsNUnitTestProject
             Admin admin = new Admin("Admin", "Adminov", "adminId", teacherAccess.Object, groupAccess, subjectAccess);
 
             //Act
-            admin.CreateTeacher("Petro", "Petrov", "ID");
+            admin.CreateTeacher("Petro", "Petrov", "ID","petrov","abc123");
 
             //Assert
             Assert.IsTrue(isTeacherCreated);
@@ -47,10 +47,10 @@ namespace StudentsNUnitTestProject
             TeacherAccess teacherAccess = new TeacherAccess(new DBAccess());
 
             Admin admin = new Admin("Admin", "Adminov", "adminId", teacherAccess, groupAccess, subjectAccess.Object);
-            Teacher teacher = new Teacher("Petro", "Petrov", "ID");
+            Teacher teacher = new Teacher("Petro", "Petrov", "ID","petrov");
 
             //Act
-            admin.CreateSubject("Subject", teacher);
+            admin.CreateSubject("Subject", "ID");
 
             //Assert
             Assert.IsTrue(isSubjectCreated);
@@ -91,7 +91,7 @@ namespace StudentsNUnitTestProject
             Admin admin = new Admin("Admin", "Adminov", "adminId", teacherAccess, groupAccess, subjectAccess);
 
             //Act
-            admin.CreateStudent("Ivan", "Ivanov", groupMock.Object, "Studak", "Zachotka");
+            admin.CreateStudent("Ivan", "Ivanov", "Studak", "Zachotka", "Group", "ivanov", "ivanov");
 
             //Assert
             Assert.IsTrue(isStudentCreated);

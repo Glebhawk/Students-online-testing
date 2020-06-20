@@ -22,8 +22,8 @@ namespace StudentsNUnitTestProject
             //Arrange
             int expectedScore = 1;
 
-            Exam exam = new Exam("SomeExam", 1, 3);
-            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka");
+            Exam exam = new Exam("SomeExam", 1, 3, 1);
+            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka", "TEST", "ivanov");
             Question question = new Question("Some question", "Correct answer", new List<String> { "Answer1", "Answer2" });
             AnsweredQuestion answeredQuestion = new AnsweredQuestion(question, "Correct answer");
             List<AnsweredQuestion> answeredQuestions = new List<AnsweredQuestion> { answeredQuestion };
@@ -41,8 +41,8 @@ namespace StudentsNUnitTestProject
             //Arrange
             int expectedScore = 1;
 
-            Exam exam = new Exam("SomeExam", 1, 3);
-            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka");
+            Exam exam = new Exam("SomeExam", 1, 3, 1);
+            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka", "TEST", "ivanov");
             Question question = new Question("Some question", "Correct answer", new List<String> { "Answer1", "Answer2" });
             AnsweredQuestion answeredQuestion = new AnsweredQuestion(question, "Correct answer");
             List<AnsweredQuestion> answeredQuestions = new List<AnsweredQuestion>();

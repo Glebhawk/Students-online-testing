@@ -14,10 +14,12 @@ namespace StudentsTesting1.Logic.Users
     public class Teacher : User
     {
         public string teacherID { get; private set; }
+        public string login { get; private set; }
 
-        public Teacher(string FirstName, string LastName, string ID) : base(FirstName, LastName)
+        public Teacher(string FirstName, string LastName, string ID, string Login) : base(FirstName, LastName)
         {
             teacherID = ID;
+            login = Login;
         }
     }
 }

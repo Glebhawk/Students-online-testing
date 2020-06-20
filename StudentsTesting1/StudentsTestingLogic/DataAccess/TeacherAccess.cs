@@ -10,7 +10,6 @@ namespace StudentsTesting1.DataAccess
     public class TeacherAccess
     {
         private IDBAccess dbaccess;
-
         public TeacherAccess(IDBAccess iDBAccess)
         {
             dbaccess = iDBAccess;
@@ -24,14 +23,14 @@ namespace StudentsTesting1.DataAccess
 
         public List<Teacher> GetTeachersFromDB()
         {
-            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM TEACHERS");
+            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM TEACHERS JOIN ACCOUNTS ON TEACHERS.ID = ACCOUNTS.USER_ID WHERE ACCOUNTS.ROLE = \"teacher\"");
             List<Teacher> teachers = new List<Teacher>();
             if (dataTable.Rows.Count > 0)
             {
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
-                    teachers.Add(new Teacher(Convert.ToString(dataTable.Rows[i].ItemArray[1]),
-                    Convert.ToString(dataTable.Rows[i].ItemArray[2]), Convert.ToString(dataTable.Rows[i].ItemArray[3])));
+                    teachers.Add(new Teacher(Convert.ToString(dataTable.Rows[i].ItemArray[1]), Convert.ToString(dataTable.Rows[i].ItemArray[2]), 
+                        Convert.ToString(dataTable.Rows[i].ItemArray[3]), Convert.ToString(dataTable.Rows[i].ItemArray[5])));
                 }
             }
             return teachers;
@@ -39,15 +38,14 @@ namespace StudentsTesting1.DataAccess
 
         public Teacher GetTeacherByID(int id)
         {
-            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM TEACHERS WHERE ID = " + id + ";");
+            DataTable dataTable = dbaccess.SQLGetTableData("SELECT * FROM TEACHERS JOIN ACCOUNTS ON TEACHERS.ID = ACCOUNTS.USER_ID WHERE ACCOUNTS.ROLE = \"teacher\" AND TEACHERS.ID = " + id + ";");
             if (dataTable.Rows.Count > 0)
             {
-                Teacher teacher = new Teacher(Convert.ToString(dataTable.Rows[0].ItemArray[1]),
-                        Convert.ToString(dataTable.Rows[0].ItemArray[2]), Convert.ToString(dataTable.Rows[0].ItemArray[3]));
+                Teacher teacher = new Teacher(Convert.ToString(dataTable.Rows[0].ItemArray[1]), Convert.ToString(dataTable.Rows[0].ItemArray[2]), 
+                    Convert.ToString(dataTable.Rows[0].ItemArray[3]), Convert.ToString(dataTable.Rows[0].ItemArray[5]));
                 return teacher;
             }
-            Teacher emptyTeacher = new Teacher("Teacher not found", "Teacher not found", "No ID");
-            return emptyTeacher;
+            return null;
         }
     }
 }

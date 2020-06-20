@@ -11,11 +11,14 @@ namespace StudentsTesting1.Logic.Users
     {
         public string studentID { get; private set; }
         public string recordBook { get; private set; }
-
-        public Student(string FirstName, string LastName, string ID, string RecordBook) : base(FirstName, LastName)
+        public string groupTitle { get; private set; }
+        public string login { get; set; }
+        public Student(string FirstName, string LastName, string ID, string RecordBook, string GroupTitle, string Login) : base(FirstName, LastName)
         {
             studentID = ID;
             recordBook = RecordBook;
+            groupTitle = GroupTitle;
+            login = Login;
         }
     }
 }

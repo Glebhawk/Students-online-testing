@@ -22,7 +22,7 @@ namespace StudentsNUnitTestProject
             var examAccess = new Mock<ExamAccess>(new DBAccess());
             examAccess.Setup(t => t.InsertExamToDB(It.IsAny<Exam>(), It.IsAny<int>()));
 
-            Teacher teacher = new Teacher("Petro", "Petrov", "ID");
+            Teacher teacher = new Teacher("Petro", "Petrov", "ID", "petrov");
             ResultAccess resultAccess = new ResultAccess(new DBAccess());
             StudentAccess studentAccess = new StudentAccess(new DBAccess());
             TeacherController teacherController = new TeacherController(teacher, resultAccess, studentAccess, examAccess.Object);
@@ -48,9 +48,9 @@ namespace StudentsNUnitTestProject
             var group = new Mock<Group>("Test");
             group.Setup(t => t.AssignExam(It.IsAny<Exam>())).Callback(() => isExamAssigned = true);
 
-            Teacher teacher = new Teacher("Petro", "Petrov", "ID");
+            Teacher teacher = new Teacher("Petro", "Petrov", "ID", "petrov");
             TeacherController teacherController = new TeacherController(teacher);
-            Exam exam = new Exam("SomeExam", 1, 3);
+            Exam exam = new Exam("SomeExam", 1, 3, 1);
 
             //Act
             teacherController.AssignExamToGroup(exam, group.Object);
@@ -63,9 +63,9 @@ namespace StudentsNUnitTestProject
         public void TeacherControllerCheckResultsTest()
         {
             //Arrange
-            Student student1 = new Student("Ivan", "Ivanov", "Studak1", "Zachotka1");
-            Student student2 = new Student("Katya", "Katina", "Studak2", "Zachotka2");
-            Student student3 = new Student("Denis", "Denisov", "Studak3", "Zachotka3");
+            Student student1 = new Student("Ivan", "Ivanov", "Studak1", "Zachotka1", "TEST", "ivanov");
+            Student student2 = new Student("Katya", "Katina", "Studak2", "Zachotka2", "TEST", "katerina");
+            Student student3 = new Student("Denis", "Denisov", "Studak3", "Zachotka3", "TEST", "denis");
 
             Result IvanovResult1 = new Result(student1, 2, new List<AnsweredQuestion>());
             Result IvanovResult2 = new Result(student1, 1, new List<AnsweredQuestion>());
@@ -79,9 +79,9 @@ namespace StudentsNUnitTestProject
             studentAccess.Setup(t => t.GetStudentsFromGroup(It.IsAny<string>())).Returns(new List<Student> { student1, student2, student3 });
             ExamAccess examAccess = new ExamAccess(new DBAccess());
 
-            Teacher teacher = new Teacher("Petro", "Petrov", "ID");
+            Teacher teacher = new Teacher("Petro", "Petrov", "ID", "petrov");
             TeacherController teacherController = new TeacherController(teacher, resultAccess.Object, studentAccess.Object, examAccess);
-            Exam exam = new Exam("SomeExam", 1, 3);
+            Exam exam = new Exam("SomeExam", 1, 3, 1);
             Group group = new Group("Test");
 
             //Act

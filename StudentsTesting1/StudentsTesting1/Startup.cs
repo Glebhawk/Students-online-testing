@@ -29,7 +29,7 @@ namespace StudentsTesting1
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/login");
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
             services.AddControllersWithViews();
         }
@@ -52,9 +52,8 @@ namespace StudentsTesting1
 
             app.UseRouting();
 
-
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

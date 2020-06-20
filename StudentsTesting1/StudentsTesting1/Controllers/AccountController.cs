@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Cryptography;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using StudentsTesting1.Pages;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using StudentsTesting1.Logic.Accounts;
-using System.Text;
-using System.Security.Cryptography;
-using StudentsTesting1.IoC;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using StudentsTesting1.DataAccess;
+using StudentsTesting1.IoC;
+using StudentsTesting1.Logic.Accounts;
+using Microsoft.AspNetCore.Http;
 
 namespace StudentsTesting1.Controllers
 {
@@ -22,10 +22,16 @@ namespace StudentsTesting1.Controllers
         private AccountAccess accountAccess { get; set; }
         private IoCContainer IoC = new IoCContainer();
 
-        public AccountController()
+        public AccountController(IDBAccess dBAccess)
         {
             IoC.RegisterObject<IDBAccess, DBAccess>();
             accountAccess = new AccountAccess(dBAccess);
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
         }
 
         [HttpGet]
@@ -33,73 +39,48 @@ namespace StudentsTesting1.Controllers
         {
             return View();
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(RegisterModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-        //        if (user == null)
-        //        {
-        //            // добавляем пользователя в бд
-        //            user = new User { Email = model.Email, Password = model.Password };
-        //            Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
-        //            if (userRole != null)
-        //                user.Role = userRole;
-
-        //            _context.Users.Add(user);
-        //            await _context.SaveChangesAsync();
-
-        //            await Authenticate(user); // аутентификация
-
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //            ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-        //    }
-        //    return View(model);
-        //}
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-        [HttpPost]
+
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(IndexModel model)
+        public async Task<ClaimsIdentity> Login(LoginModel model, HttpContext context)
         {
+            ClaimsIdentity identity = null;
             if (ModelState.IsValid)
             {
                 var sha1 = new SHA1CryptoServiceProvider();
-                var data = Encoding.UTF8.GetBytes(model.password);
+                var data = Encoding.UTF8.GetBytes(model.Password);
                 Account account = accountAccess.TryToLogin(model.login, Encoding.UTF8.GetString(sha1.ComputeHash(data)));
                 if (account != null)
                 {
-                    await Authenticate(account);
+                    identity = await Authenticate(account, context);
                 }
-                ModelState.AddModelError("", "Неправильний логін або пароль!");
-
-                model.login = Encoding.UTF8.GetString(sha1.ComputeHash(data));
             }
-            return View(model);
+            return identity;
         }
 
-        private async Task Authenticate(Account account)
+        private async Task<ClaimsIdentity> Authenticate(Account account, HttpContext context)
         {
-            // создаем один claim
             var claims = new List<Claim>
             {
                 new Claim("ID", account.ID.ToString()),
                 new Claim(ClaimsIdentity.DefaultNameClaimType, account.login),
             new Claim(ClaimsIdentity.DefaultRoleClaimType, account.role),
             };
-            // создаем объект ClaimsIdentity
+
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
-            // установка аутентификационных куки
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            return id;
+        }
+        public async Task<IActionResult> Logout(HttpContext context)
+        {
+            await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToPage("/Account/Login");
         }
     }
 }

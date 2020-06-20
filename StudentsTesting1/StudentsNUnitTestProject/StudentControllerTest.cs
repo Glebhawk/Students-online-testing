@@ -22,9 +22,9 @@ namespace StudentsNUnitTestProject
             var resultAccess = new Mock<ResultAccess>(new DBAccess());
             resultAccess.Setup(t => t.InsertResultToDB(It.IsAny<Result>(), It.IsAny<int>(), It.IsAny<string>())).Callback(() => isResultRecorded = true);
 
-            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka");
+            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka", "TEST", "ivanov");
             StudentController studentController = new StudentController(resultAccess.Object, student);
-            Exam exam = new Exam("SomeExam", 1, 3);
+            Exam exam = new Exam("SomeExam", 1, 3, 1);
             Question question1 = new Question("Some question1", "Correct answer1", new List<String> { "Answer11", "Answer12" });
             Question question2 = new Question("Some question2", "Correct answer2", new List<String> { "Answer21", "Answer22" });
             List<Question> questions = new List<Question> { question1, question2 };
@@ -46,9 +46,9 @@ namespace StudentsNUnitTestProject
             var resultAccess = new Mock<ResultAccess>(new DBAccess());
             resultAccess.Setup(t => t.GetResultOfStudent(It.IsAny<string>(), It.IsAny<int>())).Callback(() => isResultChecked = true);
 
-            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka");
+            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka", "TEST", "ivanov");
             StudentController studentController = new StudentController(resultAccess.Object, student);
-            Exam exam = new Exam(1, "SomeExam", 1, 3);
+            Exam exam = new Exam("SomeExam", 1, 3, 1);
 
             //Act
             studentController.CheckResult(exam);

@@ -10,12 +10,12 @@ namespace StudentsTesting1.Logic.Results
 {
     public class Result : IResult
     {
-        public IExam exam { get; protected set; }
+        public Exam exam { get; protected set; }
         public Student student { get; protected set; }
         public List<AnsweredQuestion> answeredQuestions { get; private set; }
         public int score { get; protected set; }
 
-        public Result(IExam Exam, Student Student, List<AnsweredQuestion> AnsweredQuestions)
+        public Result(Exam Exam, Student Student, List<AnsweredQuestion> AnsweredQuestions)
         {
             exam = Exam;
             student = Student;

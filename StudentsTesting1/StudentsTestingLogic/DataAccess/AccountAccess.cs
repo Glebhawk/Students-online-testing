@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Text;
+using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentsTesting1.Logic.Users;
 using StudentsTesting1.Logic.Accounts;
 using System.Data;
+using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.EntityFrameworkCore;
 
 namespace StudentsTesting1.DataAccess
 {
-    public class AccountAccess
+    public class AccountAccess : DbContext
     {
         private IDBAccess dbaccess;
         private StudentAccess studentAccess;
@@ -20,19 +24,25 @@ namespace StudentsTesting1.DataAccess
             studentAccess = new StudentAccess(dbaccess);
             teacherAccess = new TeacherAccess(dbaccess);
         }
-        public void RegisterStudent(string login, int password, Student student, string groupTitle, string role)
+        public void RegisterStudent(string password, Student student)
         {
-            studentAccess.InsertStudentToDB(student, groupTitle);
+            var sha1 = new SHA1CryptoServiceProvider();
+            var data = Encoding.UTF8.GetBytes(password);
+            string passwordHash = Encoding.UTF8.GetString(sha1.ComputeHash(data));
+            studentAccess.InsertStudentToDB(student, student.groupTitle);
             string command = "INSERT INTO ACCOUNTS(\"LOGIN\",\"PASSWORD_HASH\", \"ROLE\", \"USER_ID\") VALUES " +
-                "(\"" + login + "\", " + password + ", \"" + role + "\", (SELECT MAX(ID) FROM STUDENTS));";
+                "(\"" + student.login + "\", \"" + passwordHash + "\", \"student\", (SELECT MAX(ID) FROM STUDENTS));";
             dbaccess.SQLExecute(command);
         }
 
-        public void RegisterTeacher(string login, int password, Teacher teacher, string role)
+        public void RegisterTeacher(string login, string password, Teacher teacher)
         {
             teacherAccess.InsertTeacherToDB(teacher);
+            var sha1 = new SHA1CryptoServiceProvider();
+            var data = Encoding.UTF8.GetBytes(password);
+            string passwordHash = Encoding.UTF8.GetString(sha1.ComputeHash(data));
             string command = "INSERT INTO ACCOUNTS(\"LOGIN\",\"PASSWORD_HASH\", \"ROLE\", \"USER_ID\") VALUES " +
-                "(\"" + login + "\", " + password + ", \"" + role + "\", (SELECT MAX(ID) FROM TEACHERS));";
+                "(\"" + login + "\", \"" + passwordHash + "\", \"teacher\", (SELECT MAX(ID) FROM TEACHERS));";
             dbaccess.SQLExecute(command);
         }
         public Account TryToLogin(string login, string passwordHash)
@@ -60,6 +70,17 @@ namespace StudentsTesting1.DataAccess
                 }
             }
             return null;
+        }
+
+        public int GetUserId(int accountId, string role)
+        {
+            DataTable dataTable = dbaccess.SQLGetTableData
+                ("SELECT USER_ID FROM ACCOUNTS WHERE ID = " + accountId + " AND ROLE = \"" + role + "\";");
+            if (dataTable.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dataTable.Rows[0].ItemArray[0]);
+            }
+            else return 0;
         }
     }
 }

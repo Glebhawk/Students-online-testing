@@ -13,6 +13,7 @@ namespace StudentsTesting1.Logic.Groups
     public class Group : IGroup
     {
         public string title { get; private set; }
+        public List<Subject> subjects { get; private set; }
         public List<Student> students { get; private set; } = new List<Student>();
         private IDBAccess dbAccess = new DBAccess().GetInstance();
         private ExamAccess examAccess;
@@ -49,6 +50,25 @@ namespace StudentsTesting1.Logic.Groups
         public virtual void AssignSubject(Subject subject)
         {
             groupAccess.AddSubjectToGroup(this, subject);
+        }
+
+        public void SetSubjects(List<Subject> Subjects)
+        {
+            subjects = Subjects;
+        }
+
+        public string StringOfSubjects()
+        {
+            string str = "";
+            if (subjects != null && subjects.Count > 0)
+            {
+                foreach (Subject s in subjects)
+                {
+                    str = str + s.subjectTitle + ", ";
+                }
+                str = str.Remove(str.Length - 2);
+            }
+            return str;
         }
     }
 }

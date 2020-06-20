@@ -21,8 +21,8 @@ namespace StudentsNUnitTestProject
             var examAccess = new Mock<ExamAccess>(new DBAccess());
             examAccess.Setup(t => t.AssignExam(It.IsAny<Exam>(),It.IsAny<string>())).Callback(() => isExamAssigned = true);
             GroupAccess groupAccess = new GroupAccess(new DBAccess());
-            Exam exam = new Exam("Exam", 1, 3);
-            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka");
+            Exam exam = new Exam("Exam", 1, 3, 1);
+            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka", "TEST", "ivanov");
 
             Group group = new Group("TEST", examAccess.Object, groupAccess);
             group.AddStudent(student);
@@ -38,7 +38,7 @@ namespace StudentsNUnitTestProject
         public void AddStudentTest()
         {
             //Arrange
-            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka");
+            Student student = new Student("Ivan", "Ivanov", "Studak", "Zachotka", "TEST", "ivanov");
 
             Group group = new Group("TEST");
 

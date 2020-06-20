@@ -19,13 +19,18 @@ namespace StudentsTesting1.Controllers
         private IoCContainer IoC { get; set; } = new IoCContainer();
         private IDBAccess dbAccess { get; set; }
         private ResultAccess resultAccess { get; set; }
+        private SubjectAccess subjectAccess { get; set; }
+        private ExamAccess examAccess { get; set; }
 
         public StudentController(Student Student)
         {
             IoC.RegisterObject<IGroup, Group>();
             IoC.RegisterObject<IExam, Exam>();
             IoC.RegisterObject<IDBAccess, DBAccess>();
+            dbAccess = new DBAccess();
             resultAccess = new ResultAccess(dbAccess);
+            examAccess = new ExamAccess(dbAccess);
+            subjectAccess = new SubjectAccess(dbAccess);
             student = Student;
         }
 
@@ -35,8 +40,22 @@ namespace StudentsTesting1.Controllers
             IoC.RegisterObject<IGroup, Group>();
             IoC.RegisterObject<IExam, Exam>();
             IoC.RegisterObject<IDBAccess, DBAccess>();
-            resultAccess = ResultAccess;
             student = Student;
+        }
+
+        public List<Subject> GetSubjectsOfStudent()
+        {
+            return subjectAccess.GetSubjectsOfStudent(student.studentID);
+        }
+
+        public List<Exam> GetExamsOfStudent()
+        {
+            return examAccess.GetExamsOfStudent(student.studentID);
+        }
+
+        public Result GetResultsOfStudent(int examID)
+        {
+            return resultAccess.GetResultOfStudent(student.studentID, examID);
         }
         public void PassExam(Exam exam, List<Question> questions, List<string> answers)
         {
